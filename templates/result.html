@@ -1,0 +1,28 @@
+<!doctype html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<h1>Sistema de consulta de temperatura: Leonardo de Souza</h1>
+<div class="center-on-page">
+    {% for d in data %}
+    {% if d['weather'] and d['sys'] and d['name'] and d['main'] %}
+    {% set my_string = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
+
+    <h1>
+        <img src="{{ my_string }}" class="svg" fill="white" height="100" vertical-align="middle" width="100">
+    </h1>
+    <h1>Temperatura neste momento:</h1>
+    <h1>{{ d['name'] }}, {{ d['sys']['country'] }}</h1>
+    <h1>{{ d['main']['temp']|round|int}} C</h1>
+
+    {% endif %}
+
+    {% if not d['weather'] or not d['sys'] or not d['name'] or not d['main'] %}
+        <h1>Temperatura não encontrada para este endereço!</h1>
+    {% endif %}
+
+    {% endfor %}
+
+
+
+    <br/> <br/>
+    <a href="/">Nova consulta</a>
+</div>

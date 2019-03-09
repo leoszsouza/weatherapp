@@ -1,0 +1,30 @@
+<!doctype html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<h1>Sistema de consulta de temperatura: Leonardo de Souza</h1>
+<div class="center-on-page">
+    <h1>Informe o CEP:</h1>
+    <form class="form-inline" method="POST" action="{{ url_for('result') }}">
+        <!--<div class="select">-->
+            <input type="text" name="input_field">
+            <!--<select name="comp_select" class="selectpicker form-control">-->
+                <!--{% for o in data %}-->
+                <!--<option value="{{ o.name }}">{{ o.name }}</option>-->
+                <!--{% endfor %}-->
+            <!--</select>-->
+        <!--</div>-->
+        <button type="submit" class="btn">Buscar temperatura</button>
+        <br/> <br/> <br/> <br/>
+
+        <br/>
+        <table style="100%" border="1" bgcolor="gray" >
+            <th bgcolor="white">BUSCAS RECENTES</th>
+            {% for item in hist %}
+              <tr>
+                <td>
+                    <h4 style="bgcolor=white">{{item[0]}}</h4>
+                </td>
+              </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
